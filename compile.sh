@@ -1,3 +1,5 @@
+#!/bin/bash
+
 project_name=""
 
 if [ -z "$1" ]
@@ -15,15 +17,11 @@ fi
 
 # Compile the program
 
-nasm -felf64 source/main.asm
+nasm -g -felf64 source/main.asm
 
 mv source/*.o out/tmp
 ld out/tmp/*.o
 
 mv a.out out/bin
 mv out/bin/a.out out/bin/$project_name
-cd out/bin
 
-# Execute the compiled program
-
-./$project_name
